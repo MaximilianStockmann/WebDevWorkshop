@@ -82,12 +82,12 @@
             var location_cell = new_employee_entry.insertCell(2);
             var department_cell = new_employee_entry.insertCell(3);
 
-            localStorage.setItem("employee_id", id);
+            localStorage.setItem("employee_id", JSON.stringify(id));
             localStorage.setItem("employee_name", name);
             localStorage.setItem("employee_location", location);
-            localStorage.setItem("employee_department", department);
+            localStorage.setItem("employee_department", JSON.stringify(department));
 
-            console.log(localStorage.getItem("employee_id"));
+            console.log(JSON.parse(localStorage.getItem("employee_id")));
 
             id_cell.innerHTML = id;
             name_cell.innerHTML = name;

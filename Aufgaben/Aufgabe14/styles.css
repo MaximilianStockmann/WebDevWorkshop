@@ -13,3 +13,17 @@
 * {
     font-family : MontserratCustom;
 }
+
+.account-field {
+    width : 200px;
+    height : 200px;
+    border : 1px solid black;
+}
+
+#account_field_container {
+    display : grid;
+    grid-template-columns: 200px 200px;
+    grid-row: auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
