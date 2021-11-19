@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-DE">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Überschrift</h1>
+    <p title="This is a test" style="background-color: cornflowerblue; font-family: Verdana, Geneva, Tahoma, sans-serif;">This is a paragraph <br> with a linebreak.</p> 
+    <p><em>This is a <sub>Test</sub></em></p>
+    <pre style="background-color: aquamarine;">
+        My Bonnie lies over the ocean.
+        Test
+
+        My Bonnie lies over the sea
+
+        My Bonnie lies over the ocean.
+
+        Oh, bring back my Bonnie to me.
+    </pre>
+     <p>Here is a quote from WWF's website:</p>
+        <blockquote cite="http://www.worldwildlife.org/who/index.html">
+        For 50 years, WWF has been protecting the future of nature.
+        The world's leading conservation organization,
+        WWF works in 100 countries and is supported by
+        1.2 million members in the United States and
+        close to 5 million globally.
+        </blockquote> 
+
+    <img src="sample_image.jpg" alt="Sample Image" style="width:994px;height:662px;">
+
+    <table>
+        <tr>
+            <th>TestHeader1</th>
+            <th>TestHeader2</th>
+        </tr>
+        <tr>
+            <td>TestDaten</td>
+            <td>TestDaten</td>
+        </tr>
+    </table>
+    <div>
+        <button id="testbutton" class="button_class1" onclick="showSuccess()">Click me!</button>
+        <button id="testbutton2" class="button_class1" onclick="writeDate()">Click me!</button>
+        <button id="testbutton3" class="button_class1" onclick="testAlert()">Click me!</button>
+    </div>
+    <p id="datep">The current date ist unknown!</p>
+    <script>
+        function testAlert() {
+            alert("Alarm!");
+        }
+
+        function writeDate() {
+            currentDate = new Date();
+            document.getElementById("datep").innerHTML = "The current date and time are " + currentDate.toLocaleDateString() 
+            + " " + currentDate.toLocaleTimeString();
+        }
+
+        function showSuccess() {
+            alert("Das ist richtig!");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RPG</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body class="body_kampf">
+    <header>
+        <h1>Kampf</h1>
+
+    </header>
+    <main>
+        <div id="Box">
+            <div class="cube-wrap">
+                <div class="cube">
+                    <div class="vorne">0</div>
+                    <div class="hinten">0</div>
+                    <div class="oben">´´´´</div>
+                    <div class="unten">|----|</div>
+                    <div class="links">0</div>
+                    <div class="rechts">0</div>
+                </div>
+            </div>
+
+            <input type="button" class="button" id="start" value="Start"
+                onclick="document.getElementById('Kampf').style='block';aus(); Kampf()" ;>
+        </div>
+
+        <div id="Kampf" style="visibility:hidden">
+
+
+            <div id="dadam">
+                <div id="leben"></div>
+                <br>
+                <div id="leben2"></div>
+                <p>___________________________</p>
+                <p>Angriffe:</p>
+                <input type="button" class="button" id="angrif1" value="Avexi Klatschi" style="color:rgb(91, 51, 145)"
+                    onclick="angrif1();Kampf()" ;>
+                <input type="button" class="button" id="angrif2" value="Inflexicaput" style="color:rgb(91, 51, 145)"
+                    onclick="angrif2();Kampf()" ;>
+                <p>___________________________</p>
+                <input type="button" class="button" id="gegnerk" value="Angriff Gegner" disabled="disabled"
+                    style="color:rgb(124, 11, 11)" onclick="gegnerk();Kampf()" ;>
+
+
+            </div>
+
+        </div>
+        <div id="endekampf" style="visibility:hidden">
+            <div id=ausgang></div>
+            <p>Der Kampf ist zu Ende. </p>
+        </div>
+
+    </main>
+</body>
+<script>
+    var leben = 100;
+    var gegnerleben = 90;
+    var eigenerangrif = 70 + punkt;
+    var gegnerangriff = 60;
+
+    function Kampf() {
+
+        document.getElementById('leben').innerHTML = 'Leben: ' + leben;
+        document.getElementById('leben2').innerHTML = 'Gegner Leben: ' + leben;
+
+        if (eigenleben <= 0 || gegnerleben <= 1) {
+            var e2 = document.getElementById('endekampf');
+            e2.style.visibility = "visible";
+            var e1 = document.getElementById('Kampf');
+            e1.style.display = "none";
+            if (gegnerleben <= 0) {
+                var gut = 'Sie haben gewonnen, herzlichen Glückwunsch'
+
+                document.getElementById('ausgang').innerHTML = gut;
+            }
+            else {
+                var schlecht = 'Sie haben leider verloren.'
+                
+
+            }
+
+
+        }
+
+    }
+    var min = 1;
+    var max = 100;
+    function angrif1() {
+        document.getElementById('angrif1').disabled = true; //Butten aus
+        document.getElementById('angrif2').disabled = true;
+        document.getElementById('gegnerk').disabled = false; //Butten an
+        var ran = Math.floor(Math.random() * (max - min)) + min;
+
+        if (ran <= eigenerangrif) {
+            gegnerleben = gegnerleben - 20;
+        }
+
+
+    }
+    function angrif2() {
+        document.getElementById('angrif2').disabled = true;
+        document.getElementById('angrif1').disabled = false;
+        document.getElementById('gegnerk').disabled = false;
+        var ran = Math.floor(Math.random() * (max - min)) + min;
+
+        if (ran <= eigenerangrif) {
+            gegnerleben = gegnerleben - 30;
+        }
+
+
+    }
+    function gegnerk() {
+        document.getElementById('angrif1').disabled = false;
+        document.getElementById('angrif2').disabled = false;
+        document.getElementById('gegnerk').disabled = true;
+        var ran = Math.floor(Math.random() * (max - min)) + min;
+
+        if (ran <= gegnerangriff) {
+            eigenleben = eigenleben - 10;
+        }
+    }
+</script>
+<style>
+    .cube-wrap {
+        margin-top: 100px;
+        -webkit-perspective: 800px;
+        -webkit-perspective-origin: 50% 100px;
+        perspective: 800px;
+        perspective-origin: 50% 100px;
+    }
+
+    .cube {
+        position: relative;
+        width: 200px;
+        margin: 0 auto;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        transform: rotateX(22deg) rotateY(-45deg);
+    }
+
+    .cube div {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        box-shadow: inset 0 0 30px rgba(125, 125, 125, 0.8);
+        text-align: center;
+        line-height: 200px;
+        font-size: 1.5em;
+    }
+
+    .hinten {
+        transform: translateZ(-100px) rotateY(180deg);
+    }
+
+    .rechts {
+        transform: rotateY(-270deg) translateX(100px);
+        transform-origin: top right;
+    }
+
+    .links {
+        transform: rotateY(270deg) translateX(-100px);
+        transform-origin: center left;
+    }
+
+    .oben {
+        transform: rotateX(90deg) translateY(-100px);
+        transform-origin: top center;
+    }
+
+    .unten {
+        transform: rotateX(-90deg) translateY(100px);
+        transform-origin: bottom center;
+    }
+
+    .vorne {
+        transform: translateZ(100px);
+    }
+</style>
+<footer>
+
+</footer>
+
+
+
+</html>

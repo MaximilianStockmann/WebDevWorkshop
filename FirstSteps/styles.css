@@ -1,0 +1,45 @@
+body {
+    background-color: rgb(11, 109, 109);
+}
+tr:hover td{
+    background-color: white;
+}
+tr:hover th{
+    background-color: white;
+}
+table, th, td {
+    border: 2px solid;
+    border-color: rgb(11, 109, 109);
+    border-collapse: collapse;
+}
+th, td {
+    background-color: rgb(84, 176, 199);
+}
+#testbutton {
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+#testbutton:hover {
+    background-color: violet;
+    color : darkblue;
+    transition-duration: 0.3s;
+}
+#testbutton:active {
+    background-color: darkgoldenrod;
+    color: darkgray;
+    transition-duration: 0s;
+}
+#testbutton:focus {
+    background-color: darkgoldenrod;
+    color: darkgray;
+    transition-duration: 0s;
+}
+#testbutton2 {
+    background-color: white;
+    color: hotpink;
+    border : 3px solid rgb(3, 70, 3);
+    border-radius: 10pt;
+    width : 50%;
+}

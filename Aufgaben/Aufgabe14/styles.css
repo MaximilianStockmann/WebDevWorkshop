@@ -1,0 +1,15 @@
+@font-face {
+    font-family: MontserratCustom;
+    src: url(fonts/Montserrat-Regular.ttf);
+}
+@font-face {
+    font-family: Raleway;
+    src: url(fonts/Raleway-Regular.ttf);
+}
+@font-face {
+    font-family: Josefin-Sans;
+    src: url(fonts/JosefinSans-Regular.ttf);
+}
+* {
+    font-family : MontserratCustom;
+}

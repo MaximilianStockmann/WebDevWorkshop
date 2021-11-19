@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Finde die Fehler</title>
+    <meta charset="utf-8">                  <!--utf-8-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body id="body_index">
+    <header>
+        <h1>Rätsel des Tages</h1>       <!--Rechtschreibung-->
+    </header>
+
+    <main>
+        <div id="Box1">
+            <div id="quiz_container" style="visibility:visible">
+                <p id="status">Bereit!</p>
+                <input type="button" value="Antwort" onclick="quizStart()" alt=""
+                    border="" id="start" />
+                <div id="fragediv1" style="visibility:hidden">
+                    <p>Was ist 4+7?</p>
+                    <form>
+                        <fieldset>
+                            <input type="radio" id="mc" name="zahl" value="11"
+                                onclick="document.getElementById('fragediv2').style='block'; Fragew()" ;>
+                            <label for="mc"> 11</label>
+
+                            <input type="radio" id="vi" name="zahl" value="12"
+                                onclick="document.getElementById('fragediv2').style='block'; Fragef()" ;>
+                            <label for="vi"> 12</label>
+
+                            <input type="radio" id="ae" name="zahl" value="10"
+                                onclick="document.getElementById('fragediv2').style='block'; Fragef()" ;>
+                            <label for="ae"> 10</label>
+
+                        </fieldset>
+                </div>
+
+                <div id="fragediv2" style="visibility:hidden">
+                    <fieldset>
+                        <p>Im Norden geht die Sonne auf?</p>        <!--Changed to radio button-->
+                        <input type="radio" id="mc2" name="Himmelsrichtung" value="Nein im Westen"
+                            onclick="document.getElementById('fragediv3').style='block'; Fragef()" ;>
+                        <label for="mc2"> Nein in Westen</label>
+                        <input type="radio" id="vi2" name="Himmelsrichtung" value="Nein im Osten"
+                            onclick="document.getElementById('fragediv3').style='block'; Fragew()" ;>
+                        <label for="vi2"> Nein im Osten</label>
+                        <input type="radio" id="ae2" name="Himmelsrichtung" value="JA"
+                            onclick="document.getElementById('fragediv3').style='block'; Fragef()" ;>
+                        <label for="ae2"> Ja</label>
+                    </fieldset>
+                </div>
+
+                <div id="fragediv3" style="visibility:hidden">      <!--Changed visibility to hidden by default-->
+                    <fieldset>
+                        <p>Feilgiftfrösche sind giftig?</p>
+                        <input type="radio" id="mc3" name="gift" value="nein"
+                            onclick="document.getElementById('ergebnis').style='block'; Fragef()" ;>
+                        <label for="mc3"> Nein</label>
+
+                        <input type="radio" id="vi3" name="gift" value="ja"
+                            onclick="document.getElementById('ergebnis').style='block'; Fragew()" ;>
+                        <label for="vi3"> Ja</label>
+
+                        <input type="radio" id="ae3" name="gift" value="nur für Vögel"
+                            onclick="document.getElementById('ergebnis').style='block'; Fragef()" ;>
+                        <label for="ae3"> Nur für Vögel</label>
+                    </fieldset>
+                </div>
+                <div id=ergebnis style="visibility:hidden">
+                    <span id="ergebnisrätsel"></span>
+                    <br><br>
+
+                </div>
+
+            </div>
+    </div>
+        <script>
+            punkte = 0;             //changed scope of variable punkte
+            it = 1;                 //iterating variable
+
+            function quizStart() {
+                document.getElementById('start').style.display = "none";//Antwortbutton
+                document.getElementById('status').style.display = "none";
+                document.getElementById('fragediv1').style='block';
+            }
+
+            function Fragew() {
+                punkte++;
+                var dynamicElementName = "fragediv" + it;
+
+                document.getElementById(dynamicElementName).style.display = "none";//Antworten
+
+                if (it >= 3) {
+                    var ergebnis = "Ihre Punktzahl ist: " + punkte;
+                    document.getElementById('ergebnis').innerHTML = ergebnis;
+                    return;
+                }
+
+                it++;
+            }
+            function Fragef() {
+                var dynamicElementName = "fragediv" + it;
+
+                var ee = document.getElementById(dynamicElementName);//Antworten
+                var rr = document.getElementById('start');//Antwortbutton
+                ee.style.display = "none";//Antworten aus
+                rr.style.display = "none";//Antwortbutton aus
+
+                if (it >= 3) {
+                    var ergebnis = "Ihre Punktzahl ist: " + punkte;
+                    document.getElementById('ergebnis').innerHTML = ergebnis;
+                    return;
+                }
+
+                it++;
+            }
+
+        </script>
+        <style>
+            #body_index {
+                background-color: cadetblue
+            }
+
+            h1 {
+                color: darkslateblue;
+                border: thin solid;
+                padding: 0.25em;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: -moz-max-content;
+                /* für Firefox */
+                max-width: max-content;
+                text-align: center;
+            }
+
+            p {
+                color: burlywood;
+                font-size: 18pt;
+                font-family: arial, "lucida console", sans-serif;
+                /* Schriftart */
+            }
+
+            #Box1 {
+                display: grid;
+                justify-content: center;
+                align-items: center;
+            }
+           
+        </style>
+    </main>
+</body>
+
+<footer>
+
+</footer>
+
+
+</html>

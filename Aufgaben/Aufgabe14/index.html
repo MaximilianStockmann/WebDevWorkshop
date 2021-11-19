@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management-System</title>
+</head>
+<body>
+    <div>
+        <h1>Willkommen im Personal-Management System!</h1>
+        <p>Sie können mit einem Klick auf den Button "Hinzufügen" Mitarbeiter hinzufügen!</p>
+        
+    </div>
+
+    <div>
+        <table id="employee_database">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Standort</th>
+                <th>Abteilung</th>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <p id="testing_paragraph"></p>
+
+        <label for="employee_information">Mitarbeiterinformationen</label>
+        <fieldset id="employee_information">
+            <label for="employee_id">ID:</label>
+            <input type="text" id="employee_id">
+            <label for="employee_name">Name:</label>
+            <input type="text" id="employee_name">
+            <label for="employee_location">Standort:</label>
+            <input type="text" id="employee_location">
+            <label for="department">Abteilung:</label>
+            <select name="department_chooser" id="department">
+                <option value="accounting">Buchhaltung</option>
+                <option value="it">IT</option>
+                <option value="prod">Produktion</option>
+            </select>
+            <input type="button" id="confirm_entry" value="Bestätigen" onclick="writeEmployee()">
+        </fieldset>
+    </div>
+
+    <div>
+        <p>Hier geht's zur Leseansicht: <a href="pages/readview.html">Klicken</a></p>
+        
+        <label for="clear_session_button">Und hier kann man die Datenbank zurücksetzen: </label>
+        <input type="button" id="clear_session_button" value="Klick" onclick="localStorage.clear()"/>
+    </div>
+
+    <script>
+        const department_map = new Map([
+            ["accounting", "Buchhaltung"],
+            ["it", "IT"],
+            ["prod", "Produktion"]
+        ]);
+
+        function writeEmployee() {
+            var employee_id = document.getElementById("employee_id").value;
+            var employee_name = document.getElementById("employee_name").value;
+            var employee_location = document.getElementById("employee_location").value;
+            var employee_department = document.getElementById('department').options[document.getElementById('department').selectedIndex].value;
+
+            console.log(employee_department);
+
+            addRow(employee_id, employee_name, employee_location, employee_department);
+
+            document.getElementById("testing_paragraph").innerHTML = employee_name;
+        }
+
+        function addRow(id, name, location, department) {
+            var employee_database = document.getElementById("employee_database");
+
+            var new_employee_entry = employee_database.insertRow(1);
+            var id_cell = new_employee_entry.insertCell(0);
+            var name_cell = new_employee_entry.insertCell(1);
+            var location_cell = new_employee_entry.insertCell(2);
+            var department_cell = new_employee_entry.insertCell(3);
+
+            localStorage.setItem("employee_id", id);
+            localStorage.setItem("employee_name", name);
+            localStorage.setItem("employee_location", location);
+            localStorage.setItem("employee_department", department);
+
+            console.log(localStorage.getItem("employee_id"));
+
+            id_cell.innerHTML = id;
+            name_cell.innerHTML = name;
+            location_cell.innerHTML = location;
+            department_cell.innerHTML = department_map.get(department);
+        }
+    </script>
+</body>
+</html>
