@@ -8,32 +8,40 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1>Willkommen auf ihrem Profil</h1>
-
-        <p>Hier sind ihre Kontoinformationen:</p>
+    <div id="sidebar">
+        <a href="../index.html">Schreibansicht</a>
+        <a href="readview.html">Leseansicht</a>
+        <a href="account.html">Account</a>
     </div>
 
-    <div id="account_field_container">
-        <div id="name_field" class="account-field">
-            <label for="name_label" class="account-label">Name</label>
-            <p id="name" class="account-info"></p>
+    <main>
+        <div>
+            <h1>Willkommen auf ihrem Profil</h1>
+    
+            <p>Hier sind ihre Kontoinformationen:</p>
         </div>
-
-        <div id="id_field" class="account-field">
-            <label for="id_label" class="account-label">ID-Nummer</label>
-            <p id="id" class="account-info"></p>
+    
+        <div id="account_field_container">
+            <div id="name_field" class="account-field">
+                <label for="name_label" class="account-label">Name</label>
+                <p id="name" class="account-info">Max Mustermann</p>
+            </div>
+    
+            <div id="id_field" class="account-field">
+                <label for="id_label" class="account-label">ID-Nummer</label>
+                <p id="id" class="account-info">025335</p>
+            </div>
+    
+            <div id="location_field" class="account-field">
+                <label for="location_label" class="account-label">Standort</label>
+                <p id="location" class="account-info">München</p>
+            </div>
+    
+            <div id="department_field" class="account-field">
+                <label for="department_label" class="account-label">Abteilung</label>
+                <p id="department" class="account-info">Buchhaltung</p>
+            </div>
         </div>
-
-        <div id="location_field" class="account-field">
-            <label for="location_label" class="account-label">Standort</label>
-            <p id="location" class="account-info"></p>
-        </div>
-
-        <div id="department_field" class="account-field">
-            <label for="department_label" class="account-label">Abteilung</label>
-            <p id="department" class="account-info"></p>
-        </div>
-    </div>
+    </main>
 </body>
 </html>

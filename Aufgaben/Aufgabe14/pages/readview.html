@@ -8,54 +8,62 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1>Hier ist die Leseansicht</h1>
+    <div id="sidebar">
+        <a href="../index.html">Schreibansicht</a>
+        <a href="readview.html">Leseansicht</a>
+        <a href="account.html">Account</a>
     </div>
 
-    <div>
-        <table id="employee_database_ro">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Standort</th>
-                <th>Abteilung</th>
-            </tr>
-        </table>
-    </div>
-
-    <div>
-        <input type="button" id="read_button" value="Lesen" onclick="readRow()"/>
-    </div>
-
-    <script>
-        const department_map = new Map([
-            ["accounting", "Buchhaltung"],
-            ["it", "IT"],
-            ["prod", "Produktion"]
-        ]);
-
-        function readRow() {
-            var employee_database = document.getElementById("employee_database_ro");
-
-            var id = JSON.parse(localStorage.getItem("employee_id"));
-            var name = localStorage.getItem("employee_name");
-            var location = localStorage.getItem("employee_location");
-            var department = JSON.parse(localStorage.getItem("employee_department"));
-
-            var new_employee_entry = employee_database.insertRow(1);
-            var id_cell = new_employee_entry.insertCell(0);
-            var name_cell = new_employee_entry.insertCell(1);
-            var location_cell = new_employee_entry.insertCell(2);
-            var department_cell = new_employee_entry.insertCell(3);
-
-            console.log(id);
-            console.log(department);
-
-            id_cell.innerHTML = id;
-            name_cell.innerHTML = name;
-            location_cell.innerHTML = location;
-            department_cell.innerHTML = department_map.get(department);
-        }
-    </script>
+    <main>
+        <div>
+            <h1>Hier ist die Leseansicht</h1>
+        </div>
+    
+        <div>
+            <table id="employee_database_ro">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Standort</th>
+                    <th>Abteilung</th>
+                </tr>
+            </table>
+        </div>
+    
+        <div>
+            <input type="button" id="read_button" value="Lesen" onclick="readRow()"/>
+        </div>
+    
+        <script>
+            const department_map = new Map([
+                ["accounting", "Buchhaltung"],
+                ["it", "IT"],
+                ["prod", "Produktion"]
+            ]);
+    
+            function readRow() {
+                var employee_database = document.getElementById("employee_database_ro");
+    
+                var id = JSON.parse(localStorage.getItem("employee_id"));
+                var name = localStorage.getItem("employee_name");
+                var location = localStorage.getItem("employee_location");
+                var department = JSON.parse(localStorage.getItem("employee_department"));
+    
+                var new_employee_entry = employee_database.insertRow(1);
+                var id_cell = new_employee_entry.insertCell(0);
+                var name_cell = new_employee_entry.insertCell(1);
+                var location_cell = new_employee_entry.insertCell(2);
+                var department_cell = new_employee_entry.insertCell(3);
+    
+                console.log(id);
+                console.log(department);
+    
+                id_cell.innerHTML = id;
+                name_cell.innerHTML = name;
+                location_cell.innerHTML = location;
+                department_cell.innerHTML = department_map.get(department);
+            }
+        </script>
+    </main>
 </body>
 </html>

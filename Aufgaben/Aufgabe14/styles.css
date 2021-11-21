@@ -15,15 +15,72 @@
 }
 
 .account-field {
-    width : 200px;
-    height : 200px;
-    border : 1px solid black;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
 }
 
 #account_field_container {
-    display : grid;
+    display: grid;
     grid-template-columns: 200px 200px;
     grid-row: auto auto;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+}
+
+.account-field:hover {
+    box-shadow: 3px 3px 5px grey;
+}
+
+.account-label {
+    display: flexbox;
+}
+
+.account-info {
+    display: flexbox;
+}
+
+#employee_database {
+    width: fit-content;
+}
+
+#employee_information {
+    border-radius: 4px;
+    border: solid black 2px;
+    width: fit-content;
+    background-color: #8f8585dc;
+}
+
+tr:nth-child(even){
+    background-color: rgb(66, 202, 226);
+}
+
+#sidebar {
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-color: rgb(28, 97, 201);
+}
+
+#sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+}
+
+#sidebar a:hover {
+    color: rgb(103, 212, 255)
+}
+
+main {
+    margin-left: 150px;
 }
