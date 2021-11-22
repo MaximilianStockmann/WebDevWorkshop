@@ -14,15 +14,6 @@
     font-family : MontserratCustom;
 }
 
-.account-field {
-    width: 200px;
-    height: 200px;
-    border: 1px solid black;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-}
-
 #account_field_container {
     display: grid;
     grid-template-columns: 200px 200px;
@@ -31,16 +22,30 @@
     grid-row-gap: 20px;
 }
 
+.account-field {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.account-field * {
+    display: flex;
+    justify-content: center;
+}
+
 .account-field:hover {
     box-shadow: 3px 3px 5px grey;
+    background-color: rgb(28, 97, 201);
+    color: white;
 }
 
 .account-label {
-    display: flexbox;
+    margin-top: 5px;
 }
 
 .account-info {
-    display: flexbox;
+    font-style: italic;
 }
 
 #employee_database {

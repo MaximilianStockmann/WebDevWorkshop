@@ -32,36 +32,58 @@
     
         <div>
             <input type="button" id="read_button" value="Lesen" onclick="readRow()"/>
+            <input type="button" value="Lesetest" onclick="readLocalStorage()"/>
         </div>
     
         <script>
+            /* WARNING: JavaScript localStorage doesn't work on all browsers with local files. Currently tested with Chrome */
+            //TODO: Refactor functions for reading, writing Object data and writing html. See /index.html as well.
+
+            window.addEventListener("storage", storageEventHandler, false);
+
             const department_map = new Map([
                 ["accounting", "Buchhaltung"],
                 ["it", "IT"],
                 ["prod", "Produktion"]
             ]);
+
+            function storageEventHandler() {
+                //stub
+            }
+
+            function readLocalStorage() {
+                var count = localStorage.getItem("0");
+
+                if (count == null) {
+                    localStorage.setItem("0", "1");
+                    return;
+                }
+
+                Number(count);
+
+                for (let i = 0; i <= count-1; i++) {
+                    console.log(JSON.parse(localStorage.getItem(i+1)));
+                }
+            }
     
             function readRow() {
+                count = localStorage.getItem("0");
                 var employee_database = document.getElementById("employee_database_ro");
-    
-                var id = JSON.parse(localStorage.getItem("employee_id"));
-                var name = localStorage.getItem("employee_name");
-                var location = localStorage.getItem("employee_location");
-                var department = JSON.parse(localStorage.getItem("employee_department"));
-    
-                var new_employee_entry = employee_database.insertRow(1);
-                var id_cell = new_employee_entry.insertCell(0);
-                var name_cell = new_employee_entry.insertCell(1);
-                var location_cell = new_employee_entry.insertCell(2);
-                var department_cell = new_employee_entry.insertCell(3);
-    
-                console.log(id);
-                console.log(department);
-    
-                id_cell.innerHTML = id;
-                name_cell.innerHTML = name;
-                location_cell.innerHTML = location;
-                department_cell.innerHTML = department_map.get(department);
+
+                for (let i = 0; i < count-1; i++) {
+                    var currentEntry = JSON.parse(localStorage.getItem(i+1));
+
+                    var new_employee_entry = employee_database.insertRow(1);
+                    var id_cell = new_employee_entry.insertCell(0);
+                    var name_cell = new_employee_entry.insertCell(1);
+                    var location_cell = new_employee_entry.insertCell(2);
+                    var department_cell = new_employee_entry.insertCell(3);
+
+                    id_cell.innerHTML = currentEntry["id"];
+                    name_cell.innerHTML = currentEntry["name"];
+                    location_cell.innerHTML = currentEntry["location"];
+                    department_cell.innerHTML = currentEntry["department"];
+                }
             }
         </script>
     </main>

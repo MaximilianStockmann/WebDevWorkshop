@@ -42,9 +42,9 @@
                 <input type="text" id="employee_location">
                 <label for="department">Abteilung:</label>
                 <select name="department_chooser" id="department">
-                    <option value="accounting">Buchhaltung</option>
-                    <option value="it">IT</option>
-                    <option value="prod">Produktion</option>
+                    <option class="select-option" value="accounting">Buchhaltung</option>
+                    <option class="select-option" value="it">IT</option>
+                    <option class="select-option" value="prod">Produktion</option>
                 </select>
                 <input type="button" id="confirm_entry" value="Bestätigen" onclick="writeEmployee()">
             </fieldset>
@@ -55,26 +55,43 @@
             
             <label for="clear_session_button">Und hier kann man die Datenbank zurücksetzen: </label>
             <input type="button" id="clear_session_button" value="Klick" onclick="localStorage.clear()"/>
+
+            <input type="button" onclick="readLocalStorage()" value="Read"/>
         </div>
     
         <script>
+            /* WARNING: JavaScript localStorage doesn't work on all browsers with local files. Currently tested with Chrome */
+            //TODO: Refactor functions for reading, writing Object data and writing html. See /pages/readview.html as well.
+
             const department_map = new Map([
                 ["accounting", "Buchhaltung"],
                 ["it", "IT"],
                 ["prod", "Produktion"]
             ]);
+
+            function readLocalStorage() {
+                var count = localStorage.getItem("0");
+
+                if (count == null) {
+                    localStorage.setItem("0", "1");
+                    return;
+                }
+
+                Number(count);
+
+                for (let i = 0; i <= count-2; i++) {
+                    console.log(JSON.parse(localStorage.getItem(i+1)));
+                }
+            }
     
             function writeEmployee() {
                 var employee_id = document.getElementById("employee_id").value;
                 var employee_name = document.getElementById("employee_name").value;
                 var employee_location = document.getElementById("employee_location").value;
                 var employee_department = document.getElementById('department').options[document.getElementById('department').selectedIndex].value;
-    
-                console.log(employee_department);
-    
+
                 addRow(employee_id, employee_name, employee_location, employee_department);
-    
-                document.getElementById("testing_paragraph").innerHTML = employee_name;
+                writeToLocalStorage(employee_id, employee_name, employee_location, employee_department);
             }
     
             function addRow(id, name, location, department) {
@@ -85,18 +102,33 @@
                 var name_cell = new_employee_entry.insertCell(1);
                 var location_cell = new_employee_entry.insertCell(2);
                 var department_cell = new_employee_entry.insertCell(3);
-    
-                localStorage.setItem("employee_id", JSON.stringify(id));
-                localStorage.setItem("employee_name", name);
-                localStorage.setItem("employee_location", location);
-                localStorage.setItem("employee_department", JSON.stringify(department));
-    
-                console.log(JSON.parse(localStorage.getItem("employee_id")));
-    
+
                 id_cell.innerHTML = id;
                 name_cell.innerHTML = name;
                 location_cell.innerHTML = location;
                 department_cell.innerHTML = department_map.get(department);
+            }
+
+            function writeToLocalStorage(id, name, location, department) {
+                var count = localStorage.getItem("0");
+
+                if (count == null) {
+                    localStorage.setItem("0", "1");
+                    count = localStorage.getItem("0");
+                }
+
+                console.log(count);
+                console.log(id);
+
+                var employee_data = {};
+                employee_data["id"] = id;
+                employee_data["name"] = name;
+                employee_data["location"] = location;
+                employee_data["department"] = department;
+
+                localStorage.setItem(count, JSON.stringify(employee_data));
+
+                localStorage.setItem("0", ++count);
             }
         </script>
     </main>
