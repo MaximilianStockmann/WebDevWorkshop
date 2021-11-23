@@ -15,11 +15,12 @@
 }
 
 #account_field_container {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 200px 200px;
     grid-row: auto auto;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+    float: left;
 }
 
 .account-field {
@@ -89,6 +90,15 @@ tr:nth-child(even){
 
 #button_container {
     margin-top: 5px;
+}
+
+.info-container {
+    display: inline-block;
+}
+
+.info-container img {
+    width: 50%;
+    height: auto;
 }
 
 main {
