@@ -73,6 +73,7 @@ tr:nth-child(even){
     overflow-x: hidden;
     padding-top: 20px;
     background-color: rgb(28, 97, 201);
+    border-right: solid black 2px;
 }
 
 #sidebar a {
