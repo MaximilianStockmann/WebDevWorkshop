@@ -32,7 +32,6 @@
     
         <div>
             <input type="button" id="read_button" value="Lesen" onclick="readRow()"/>
-            <input type="button" value="Lesetest" onclick="readLocalStorage()"/>
         </div>
     
         <script>
@@ -72,6 +71,10 @@
                 var employee_database = document.getElementById("employee_database_ro");
 
                 for (let i = 0; i < count-1; i++) {
+                    employee_database.deleteRow(i);
+                }
+
+                for (let i = 0; i < count-1; i++) {
                     var currentEntry = JSON.parse(localStorage.getItem(i+1));
 
                     var new_employee_entry = employee_database.insertRow(1);
@@ -83,7 +86,7 @@
                     id_cell.innerHTML = currentEntry["id"];
                     name_cell.innerHTML = currentEntry["name"];
                     location_cell.innerHTML = currentEntry["location"];
-                    department_cell.innerHTML = currentEntry["department"];
+                    department_cell.innerHTML = department_map.get(currentEntry["department"]);
                 }
             }
         </script>

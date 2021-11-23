@@ -50,18 +50,18 @@
             </fieldset>
         </div>
     
-        <div>
-            <p>Hier geht's zur Leseansicht: <a href="pages/readview.html">Klicken</a></p>
-            
-            <label for="clear_session_button">Und hier kann man die Datenbank zurücksetzen: </label>
-            <input type="button" id="clear_session_button" value="Klick" onclick="localStorage.clear()"/>
+        <div id="button_container">
+            <label for="clear_session_button">Datenbank zurücksetzen: </label>
+            <input type="button" id="clear_session_button" value="Löschen" onclick="localStorage.clear()"/>
 
-            <input type="button" onclick="readLocalStorage()" value="Read"/>
+            <label for="refresh_button">Aktualisieren: </label>
+            <input type="button" id="refresh_button" value="Aktualisieren" onclick="readRow()"/>
         </div>
     
         <script>
             /* WARNING: JavaScript localStorage doesn't work on all browsers with local files. Currently tested with Chrome */
             //TODO: Refactor functions for reading, writing Object data and writing html. See /pages/readview.html as well.
+            //TODO: Make employee_database global and check when it is changed (use eventHandler probably)
 
             const department_map = new Map([
                 ["accounting", "Buchhaltung"],
@@ -109,6 +109,37 @@
                 department_cell.innerHTML = department_map.get(department);
             }
 
+            function readRow() {
+                count = localStorage.getItem("0");
+                var employee_database = document.getElementById("employee_database");
+
+                if (employee_database.rows.length > 1) {
+                    if (Number(count) >= 2) {
+                        console.log("Count: " + count);
+                        for (let i = count-1; i > 0; i--) {
+                            console.log(i);
+                            employee_database.deleteRow(i);
+                            console.log("Inside loop");
+                        }
+                    }
+                }
+
+                for (let i = 0; i < count-1; i++) {
+                    var currentEntry = JSON.parse(localStorage.getItem(i+1));
+
+                    var new_employee_entry = employee_database.insertRow(1);
+                    var id_cell = new_employee_entry.insertCell(0);
+                    var name_cell = new_employee_entry.insertCell(1);
+                    var location_cell = new_employee_entry.insertCell(2);
+                    var department_cell = new_employee_entry.insertCell(3);
+
+                    id_cell.innerHTML = currentEntry["id"];
+                    name_cell.innerHTML = currentEntry["name"];
+                    location_cell.innerHTML = currentEntry["location"];
+                    department_cell.innerHTML = department_map.get(currentEntry["department"]);
+                }
+            }
+
             function writeToLocalStorage(id, name, location, department) {
                 var count = localStorage.getItem("0");
 
@@ -116,9 +147,6 @@
                     localStorage.setItem("0", "1");
                     count = localStorage.getItem("0");
                 }
-
-                console.log(count);
-                console.log(id);
 
                 var employee_data = {};
                 employee_data["id"] = id;

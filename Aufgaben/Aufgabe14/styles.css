@@ -87,6 +87,10 @@ tr:nth-child(even){
     color: rgb(103, 212, 255)
 }
 
+#button_container {
+    margin-top: 5px;
+}
+
 main {
     margin-left: 150px;
 }
